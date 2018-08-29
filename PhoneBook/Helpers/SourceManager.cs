@@ -16,8 +16,23 @@ namespace PhoneBook.Models
 			{
 				var sqlCommand = new SqlCommand();
 				sqlCommand.Connection = connection;
-				sqlCommand.CommandText = @"Insert INTO People (FirstName, LastName, Phone, Email, Created, Updated)
+
+			    if (personModel.Email != null)
+			    {
+			        sqlCommand.CommandText = @"Insert INTO People (FirstName, LastName, Phone, Email, Created, Updated)
 				VALUES (@FirstName, @LastName, @Phone, @Email, @Created, @Updated);";
+
+                    var sqlEmailParam = new SqlParameter
+			        {
+			            DbType = System.Data.DbType.AnsiString,
+			            Value = personModel.Email,
+			            ParameterName = "@Email"
+			        };
+			        sqlCommand.Parameters.Add(sqlEmailParam);
+			    }
+
+                sqlCommand.CommandText = @"Insert INTO People (FirstName, LastName, Phone, Created, Updated)
+				VALUES (@FirstName, @LastName, @Phone,@Created, @Updated);";
 
 				var sqlFirstNameParam = new SqlParameter
 				{
@@ -40,14 +55,7 @@ namespace PhoneBook.Models
 					ParameterName = "@Phone"
 				};
 
-				var sqlEmailParam = new SqlParameter
-				{
-					DbType = System.Data.DbType.AnsiString,
-					Value = personModel.Email,
-					ParameterName = "@Email"
-				};
-
-				var sqlCreatedDateParam = new SqlParameter
+			    var sqlCreatedDateParam = new SqlParameter
 				{
 					DbType = System.Data.DbType.DateTime,
 					Value = personModel.Created,
@@ -64,7 +72,6 @@ namespace PhoneBook.Models
 				sqlCommand.Parameters.Add(sqlFirstNameParam);
 				sqlCommand.Parameters.Add(sqlLastNameParam);
 				sqlCommand.Parameters.Add(sqlPhoneParam);
-				sqlCommand.Parameters.Add(sqlEmailParam);
 				sqlCommand.Parameters.Add(sqlCreatedDateParam);
 				sqlCommand.Parameters.Add(sqlUpdatedDateParam);
 
