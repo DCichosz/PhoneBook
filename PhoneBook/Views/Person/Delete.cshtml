@@ -1,0 +1,22 @@
+﻿@model PhoneBook.Models.PersonModel
+
+<form asp-action="Delete" method="post">
+    <table class="table">
+        <tr class="table-active">
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Telephone</th>
+        </tr>
+        <tr>
+            <td>@Model.ID</td>
+            <td>@Model.FirstName</td>
+            <td>@Model.LastName</td>
+            <td>@Model.Email</td>
+            <td>@Model.Phone</td>
+        </tr>
+    </table>
+    <input class="btn btn-danger" type="submit" value="Delete" />
+
+</form>

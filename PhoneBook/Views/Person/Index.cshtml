@@ -1,0 +1,37 @@
+﻿@model List<PhoneBook.Models.PersonModel>
+
+<div class="@TempData["alert"] my-4">
+    <span>@TempData["mess"]</span>
+</div>
+
+<table class="table table-hover">
+    <tr class="table-active">
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Created</th>
+        <th>Updated</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+
+    @foreach (var person in Model)
+    {
+    <tr>
+        <td>@person.ID</td>
+        <td>@person.FirstName</td>
+        <td>@person.LastName</td>
+        <td>@person.Phone</td>
+        <td>@person.Email</td>
+        <td>@person.Created</td>
+        <td>@person.Updated</td>
+        <td><a class="btn btn-warning" href="/Person/Edit/@person.ID">Edit</a></td>
+        <td><a class ="btn btn-danger"href="/Person/Delete/@person.ID">Delete</a></td>
+    </tr>
+    }
+</table>
+
+<a class="float-left btn btn-primary" style="width:150px" href="/Person/Index/?id=@ViewBag.Prev&name=@ViewBag.Name">Previous Page</a>
+<a class="float-right btn btn-primary" style="width: 150px; margin-right: 13px" href="/Person/Index/?id=@ViewBag.Next&name=@ViewBag.Name">Next Page</a>

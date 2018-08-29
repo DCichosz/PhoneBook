@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="~/bootstrap/css/bootstrap-grid.css" rel="stylesheet">
+    <link href="~/bootstrap/css/bootstrap-reboot.css" rel="stylesheet">
+
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid mt-3">
+            <div class="navbar-header container">
+                <a class="navbar-brand align-middle mx-5 btn btn-info" href="/Person/Index">PhoneBook</a>
+                <a class="navbar-brand align-middle mx-5" href="/Person/Add">Add Person</a>
+                <form method="get" action="/Person/index" class="navbar-form navbar-left d-inline">
+                    <div class="d-inline-block float-right mx-5">
+                        <input type="hidden" name="id" value="@ViewBag.ID" />
+                        <input type="text" name="name" class="form-control align-middle" placeholder="Search Surname" value="@ViewBag.Name">
+                        <input type="submit" class="btn btn-secondary align-middle" value="Search" />
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </nav>
+    <hr>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <script src="~/bootstrap/js/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script src="~/bootstrap/js/bootstrap.bundle.js" charset="utf-8"></script>
+</body>
+</html>
